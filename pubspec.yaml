@@ -1,0 +1,115 @@
+name: flutter_ns_test
+description: 一个练习的flutter项目
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  #https://pub.dev/packages/cupertino_icons
+  cupertino_icons: ^1.0.3
+
+  # 库： https://pub.dev
+  #日志 https://pub.dev/packages/logger
+  logger: ^1.0.0
+
+  #App包信息 https://pub.dev/packages/package_info
+  package_info: ^2.0.2
+
+  #设备信息 https://pub.dev/packages/device_info/install
+  device_info: ^2.0.2
+
+  #屏幕适配 https://github.com/OpenFlutter/flutter_screenutil/blob/master/README_CN.md
+  flutter_screenutil: ^5.0.0+2
+
+  #手机状态栏颜色 https://pub.dev/packages/flutter_statusbarcolor_ns/install
+  flutter_statusbarcolor_ns: ^0.3.0-nullsafety
+
+#  #路由控制
+#  auto_route: ^2.1.0
+  fluro: ^2.0.3
+
+  #-----------------------分割线--------------------------
+
+
+  #状态管理 https://pub.dev/packages/flutter_bloc
+  flutter_bloc: ^7.2.0
+
+  #事件
+  event_bus: ^2.0.0
+
+  #提示
+  #https://github.com/MMMzq/bot_toast/blob/master/README_zh.md
+  bot_toast: ^4.0.1
+
+  #动画
+#  animations: 2.0.1
+
+  #用于访问加速度计、陀螺仪和磁强计传感器。
+  sensors_plus: ^1.1.0
+
+  #-----------------------分割线--------------------------
+
+  #分享
+  share_plus: ^2.1.4
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+#  auto_route_generator: 2.1.0
+#  build_runner:
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+   - assets/
+   - assets/images/
+   - assets/images/global/
+   - assets/images/3d/banner/
+   - assets/images/3d/full_screen/
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware.
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
