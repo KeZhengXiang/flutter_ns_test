@@ -30,6 +30,10 @@ class RouterUtil {
     return navigateTo(context, Routes.blocTestPage, transition: _transitionType);
   }
 
+  static Future<dynamic> goProviderTestPage(BuildContext context) {
+    return navigateTo(context, Routes.providerTestPage, transition: _transitionType);
+  }
+
   static Future<dynamic> goSensingBannerPage(BuildContext context) {
     return navigateTo(context, Routes.sensingBannerPage, transition: _transitionType);
   }

@@ -6,7 +6,10 @@ class Routes {
 
   static String root = "/";
   static String homePage = "/HomePage";
+
   static String blocTestPage = "/HomePage/BlocTestPage";
+  static String providerTestPage = "/HomePage/ProviderTestPage";
+
   static String houseToolPage = "/HomePage/HouseToolPage";
 
   //
@@ -19,6 +22,7 @@ class Routes {
     router.define(root, handler: rootHandler);
     router.define(homePage, handler: homeHandler);
     router.define(blocTestPage, handler: blocTestHandler);
+    router.define(providerTestPage, handler: providerTestHandler);
     router.define(houseToolPage, handler: houseToolHandler);
 
     router.define(sensingBannerPage, handler: sensingBannerHandler);

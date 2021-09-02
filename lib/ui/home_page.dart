@@ -85,6 +85,19 @@ class _HomePageState extends State<HomePage> {
         padding: EdgeInsets.symmetric(horizontal: 15.dw, vertical: 5.dw),
         color: Theme.of(context).accentColor,
         child: Text(
+          "初识 provider",
+          style: TextStyle(fontSize: 16.dsp, fontWeight: FontWeight.w400, color: Colors.white),
+        ),
+        onPressed: () {
+          RouterUtil.goProviderTestPage(context);
+        },
+      ),
+
+      //
+      DButton(
+        padding: EdgeInsets.symmetric(horizontal: 15.dw, vertical: 5.dw),
+        color: Theme.of(context).accentColor,
+        child: Text(
           "私人计算器",
           style: TextStyle(fontSize: 16.dsp, fontWeight: FontWeight.w400, color: Colors.white),
         ),

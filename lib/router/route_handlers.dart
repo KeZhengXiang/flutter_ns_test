@@ -8,6 +8,9 @@ import 'package:flutter_ns_test/ui/home_page.dart';
 import 'package:flutter_ns_test/ui/start_page.dart';
 import 'package:flutter_ns_test/ui/test/bloc/bloc_test_page.dart';
 import 'package:flutter_ns_test/ui/test/house_tool_page.dart';
+import 'package:flutter_ns_test/ui/test/provider/provider_test_model.dart';
+import 'package:flutter_ns_test/ui/test/provider/provider_test_page.dart';
+import 'package:provider/provider.dart';
 
 //空页面
 var emptyHandler = Handler(handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
@@ -33,6 +36,15 @@ var blocTestHandler =
 var houseToolHandler =
     Handler(handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
   return HouseToolPage();
+});
+
+var providerTestHandler =
+    Handler(handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
+  // return ProviderTestPage();
+  return MultiProvider(
+    providers: [ChangeNotifierProvider(create: (_) => ProviderTestModel())],
+    child: ProviderTestPage(),
+  );
 });
 
 var sensingBannerHandler =
