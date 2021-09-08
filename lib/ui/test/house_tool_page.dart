@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ns_test/common/common.dart';
+import 'package:flutter_ns_test/router/router_util.dart';
 
 ///法拍房计算工具
 class HouseToolPage extends StatefulWidget {
@@ -27,6 +29,9 @@ class _HouseToolPageState extends State<HouseToolPage> {
 
   //
   void perform() {
+    RouterUtil.goBlocTestPage(context);
+    return;
+    count = 0;
     if (total > 0) {
       // 个税：3%（退税）
       // 增值税：5.3%（退税）
@@ -54,10 +59,39 @@ class _HouseToolPageState extends State<HouseToolPage> {
     setState(() {});
   }
 
+  bool useWhiteForeground = useWhite;
+
+  int count = 0;
+
   @override
   void initState() {
-    perform();
+    if (useWhiteForeground == false) {
+      setStatusBarConfig(useWhiteForeground: true);
+    }
+
+    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) {
+      print("addPostFrameCallback: timeStamp = $timeStamp");
+
+      WidgetsBinding.instance?.addPersistentFrameCallback((Duration timeStamp) {
+        count++;
+        print("addPersistentFrameCallback: timeStamp = $timeStamp  count = $count");
+
+        // //触发一帧的绘制
+        // WidgetsBinding.instance?.scheduleFrame();
+        // perform();
+      });
+    });
+
+    // WidgetsBinding.instance?.removeObserver(observer)
+
+    // perform();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    setStatusBarConfig(useWhiteForeground: useWhiteForeground);
+    super.dispose();
   }
 
   @override
@@ -150,7 +184,10 @@ class _HouseToolPageState extends State<HouseToolPage> {
         keyboardType: TextInputType.number,
         onChanged: (String value) {
           print(value);
-          var d = double.parse(value);
+          double d = 0;
+          if (value.isNotEmpty) {
+            d = double.parse(value);
+          }
           if (d > 0) {
             total = d * 10000;
           }

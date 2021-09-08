@@ -14,6 +14,7 @@ class ToastUtil {
     BotToast.showText(
         text: msg,
         duration: duration,
+        animationDuration: const Duration(milliseconds: 3000),
         textStyle: TextStyle(fontSize: 14.dsp, color: Colors.white),
         contentColor: Theme.of(navigatorKey.currentContext!).backgroundColor);
   }

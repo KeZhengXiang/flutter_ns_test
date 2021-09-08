@@ -1,10 +1,16 @@
+import 'package:battery_plus/battery_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_ns_test/component/d_button.dart';
 import 'package:flutter_ns_test/component/my_will_pop_scope.dart';
+import 'package:flutter_ns_test/http/api.dart';
+import 'package:flutter_ns_test/http/http_tool.dart';
 import 'package:flutter_ns_test/router/router_util.dart';
 import 'package:flutter_ns_test/extension/size_extension.dart';
+import 'package:flutter_ns_test/tool/log_utils.dart';
 import 'package:flutter_ns_test/tool/toast_util.dart';
+
+import 'widgets_binding_manager.dart';
 
 //首页
 class HomePage extends StatefulWidget {
@@ -16,28 +22,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    // setState(() {
-    //   _counter++;
-    // });
-
-    // Navigator.of(context).push(
-    //   MaterialPageRoute<void>(
-    //     builder: (BuildContext context) {
-    //       return BlocProvider(create: (_) => CounterCubit(), child: BlocTestPage());
-    //     },
-    //   ),
-    // );
-
-    RouterUtil.goHouseToolPage(context);
+  initData() {
+    WidgetsBinding.instance?.addObserver(WidgetsBindingManager.instance);
   }
 
   @override
   void initState() {
+    // dio.interceptors.add(HttpFormatter());
     // LanguageChangeJson.change();
+    Future.delayed(Duration(milliseconds: 1000)).then((value) => initData());
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    HttpTool.instance.connectivityListenCancel();
+    WidgetsBinding.instance?.removeObserver(WidgetsBindingManager.instance);
+    super.dispose();
   }
 
   @override
@@ -57,8 +58,12 @@ class _HomePageState extends State<HomePage> {
         ),
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
-          onPressed: () {
+          onPressed: () async {
             ToastUtil.showText(msg: "随便点点");
+
+            // logI(Dio().options.headers);
+            // API.appVersion();
+
           },
         ),
       ),

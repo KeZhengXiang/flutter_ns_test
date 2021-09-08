@@ -32,6 +32,19 @@ class MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // //调试显示检查模式横幅（右上角DEBUG标签）
+      // debugShowCheckedModeBanner: true,
+      // //调试显示材质网格
+      // debugShowMaterialGrid: true,
+      // //显示语义调试器
+      // showSemanticsDebugger: true,
+      // //棋盘格光栅缓存图像
+      // checkerboardRasterCacheImages: true,
+      // //棋盘格层
+      // checkerboardOffscreenLayers: true,
+      // //显示性能叠加
+      // showPerformanceOverlay: true,
+
       navigatorKey: navigatorKey,
       // router: RouterUtil.appRouter,
       builder: BotToastInit(),

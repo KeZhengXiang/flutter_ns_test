@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ns_test/ui/3d_page/full_screen_sensing_page.dart';
 import 'package:flutter_ns_test/ui/3d_page/sensing_banner_page.dart';
 import 'package:flutter_ns_test/ui/empty_page.dart';
-import 'package:flutter_ns_test/ui/home_page.dart';
+import 'package:flutter_ns_test/ui/home/home_page.dart';
 import 'package:flutter_ns_test/ui/start_page.dart';
 import 'package:flutter_ns_test/ui/test/bloc/bloc_test_page.dart';
 import 'package:flutter_ns_test/ui/test/house_tool_page.dart';

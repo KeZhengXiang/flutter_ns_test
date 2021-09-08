@@ -1,13 +1,15 @@
 // 公共类
 import 'dart:async';
 import 'dart:io';
-import 'package:device_info/device_info.dart';
+import 'package:battery_plus/battery_plus.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_ns_test/http/http_tool.dart';
 import 'package:flutter_ns_test/tool/log_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:package_info/package_info.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class Global {
   static const double defaultWidth = 375.0;
@@ -28,12 +30,8 @@ class Global {
   // 是否为release版
   static bool get isRelease => bool.fromEnvironment("dart.vm.product");
 
-  static bool get isIOS => Platform.isIOS;
-
-  static bool get isAndroid => Platform.isAndroid;
-
   // 当前平台
-  static TargetPlatform? targetPlatform;
+  static String get curPlatform => Platform.operatingSystem;
 
   //App包信息
   static PackageInfo? packageInfo;
@@ -41,8 +39,7 @@ class Global {
   // 事件插件
   static EventBus eventBus = EventBus();
 
-  // 网络缓存对象
-  // static NetCache netCache = NetCache();
+  static final battery = Battery();
 
   ///*********************************************]
 
@@ -52,7 +49,25 @@ class Global {
     await getDeviceInfo();
 
     await getPackageInfo();
+
+    //监听网络状态
+    HttpTool.instance.connectivityListenInit();
     log("======================flutter init end======================");
+
+    // print(await battery.batteryLevel);
+    // battery.onBatteryStateChanged.listen((BatteryState state) {
+    //   // Do something with new state
+    //   if (state == BatteryState.full) {
+    //     log("电池充满");
+    //   } else if (state == BatteryState.charging) {
+    //     log("电池正在充电");
+    //   } else if (state == BatteryState.discharging) {
+    //     log("电池正在放电");
+    //   } else {
+    //     //unknown
+    //     log("电池状态未知");
+    //   }
+    // });
   }
 
   //初始化界面数据
@@ -60,12 +75,8 @@ class Global {
     log("======================flutter uiInit begin======================");
 
     log("是否为release版: $isRelease");
-    if (Platform.isIOS) {
-      targetPlatform = TargetPlatform.iOS;
-    } else {
-      targetPlatform = TargetPlatform.android;
-    }
-    log("当前平台: ${targetPlatform ?? "unknown"}");
+
+    log("当前平台: $curPlatform");
 
     ScreenUtil.init(
         BoxConstraints(
@@ -78,7 +89,7 @@ class Global {
     screenHeight = ScreenUtil().screenHeight;
     statusBarHeight = ScreenUtil().statusBarHeight;
     bottomBarHeight = ScreenUtil().bottomBarHeight;
-    log("\n "
+    log("屏幕参数：\n "
         "设备像素密度；${ScreenUtil().pixelRatio} \n "
         "设备宽度；$screenWidth \n "
         "设备高度；$screenHeight \n "
@@ -97,11 +108,15 @@ class Global {
   ///获取APP包信息
   static Future<PackageInfo?> getPackageInfo() async {
     packageInfo = await PackageInfo.fromPlatform();
-    log("--------包信息：\n "
+    log("--------包信息：\n"
         "APP名称: ${packageInfo?.appName ?? "unknown"}\n"
         "包名: ${packageInfo?.packageName ?? "unknown"}\n"
         "版本名: ${packageInfo?.version ?? "unknown"}\n"
         "版本号: ${packageInfo?.buildNumber ?? "unknown"}");
+    String buildSignature = packageInfo?.buildSignature ?? "";
+    if (buildSignature.isNotEmpty) {
+      log("Android 签名：$buildSignature");
+    }
     return packageInfo;
   }
 
@@ -117,11 +132,17 @@ class Global {
       if (Platform.isIOS) {
         iosDeviceInfo = await deviceInfo.iosInfo;
         deviceId = iosDeviceInfo?.identifierForVendor ?? "";
-        log("IOS设备: identifierForVendor = $deviceId");
+        log("IOS设备: identifierForVendor = ${iosDeviceInfo?.toMap()}");
+        log("IOS设备：");
+        logV(androidDeviceInfo?.toMap());
       } else if (Platform.isAndroid) {
         androidDeviceInfo = await deviceInfo.androidInfo;
         deviceId = androidDeviceInfo?.androidId ?? "";
-        log("Android设备: androidId = $deviceId");
+        // log("Android设备: androidId = ${androidDeviceInfo?.toMap()}}");
+        log("Android设备信息：");
+        logV(androidDeviceInfo?.toMap());
+      } else {
+        log("设备信息：其他设备");
       }
     } catch (e) {
       print("获取设备信息报错：e:$e");

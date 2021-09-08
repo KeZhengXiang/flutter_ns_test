@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ns_test/common/global.dart';
 import 'package:flutter_ns_test/component/btn_text_round_countdown.dart';
 import 'package:flutter_ns_test/component/my_will_pop_scope.dart';
+import 'package:flutter_ns_test/http/http_tool.dart';
 import 'package:flutter_ns_test/resources/image_path.dart';
 import 'package:flutter_ns_test/extension/size_extension.dart';
 import 'package:flutter_ns_test/router/router_util.dart';
@@ -25,7 +26,9 @@ class _StartPageState extends State<StartPage> {
 
   @override
   void initState() {
-    Global.init().then((value) => refreshUI());
+    Global.init().then((value) {
+      refreshUI();
+    });
     // Future.delayed(Duration(milliseconds: 10)).then((value) => Global.uiInit(context));
     super.initState();
   }
@@ -63,10 +66,12 @@ class _StartPageState extends State<StartPage> {
                   callback: (CTBCallbackType type) {
                     if (type == CTBCallbackType.complete) {
                       log("倒计时间到，自动跳转首页");
-                      RouterUtil.goHomePage(context);
+                      RouterUtil.goBlocTestPage(context);
                     } else if (type == CTBCallbackType.click) {
                       log("被点击，执跳转首页");
+
                       RouterUtil.goHomePage(context);
+                      RouterUtil.goBlocTestPage(context);
                     }
                   },
                 ),

@@ -21,11 +21,14 @@ dependencies:
   #日志 https://pub.dev/packages/logger
   logger: ^1.0.0
 
-  #App包信息 https://pub.dev/packages/package_info
-  package_info: ^2.0.2
+  #App包信息 https://pub.dev/packages/package_info_plus
+  package_info_plus: ^1.0.6
 
-  #设备信息 https://pub.dev/packages/device_info/install
-  device_info: ^2.0.2
+  #设备信息 https://pub.dev/packages/device_info_plus
+  device_info_plus: ^2.1.0
+
+  #电量 https://pub.dev/packages/battery_plus
+  battery_plus: ^1.1.1
 
   #屏幕适配 https://github.com/OpenFlutter/flutter_screenutil/blob/master/README_CN.md
   flutter_screenutil: ^5.0.0+2
@@ -43,6 +46,13 @@ dependencies:
 
   #状态管理 https://pub.dev/packages/flutter_bloc
   flutter_bloc: ^7.2.0
+
+  #网络库 https://pub.dev/packages/dio
+  dio: ^4.0.0
+  #格式显示请求结果
+  dio_http_formatter: ^2.0.0
+  #网络状态监听【全平台】 https://pub.dev/packages/connectivity_plus
+  connectivity_plus: ^1.1.0
 
   #事件
   event_bus: ^2.0.0

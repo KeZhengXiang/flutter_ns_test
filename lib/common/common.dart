@@ -1,5 +1,7 @@
 //file:common.dart
 
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -31,13 +33,16 @@ Widget get loadingWidget {
   return CircularProgressIndicator(); //转圈圈
 }
 
-///true，文本和图标的颜色会是白色的，否则就是黑色的。
+///默认黑色 false，为true文本和图标的颜色会是白色的，否则就是黑色的。
 bool _useWhite = false;
 
 bool get useWhite => _useWhite;
 
 ///设置状态栏透明
 Future<void> setStatusBarColor() {
+  if (!(Platform.isIOS || Platform.isAndroid)) {
+    return Future.value(0);
+  }
   log("设置状态栏透明");
   return FlutterStatusbarcolor.setStatusBarColor(Colors.transparent);
 }
@@ -45,9 +50,13 @@ Future<void> setStatusBarColor() {
 ///设置状态栏前景亮度
 ///  * [useWhiteForeground] - 设置为true，文本和图标的颜色会是白色的，否则就是黑色的。
 Future<void> setStatusBarConfig({required bool useWhiteForeground}) async {
-  if (_useWhite == useWhiteForeground) {
-    return;
+  // if (_useWhite == useWhiteForeground) {
+  //   return;
+  // }
+  if (!(Platform.isIOS || Platform.isAndroid)) {
+    return Future.value(0);
   }
+
   _useWhite = useWhiteForeground;
   log("设置状态栏前景亮度： ${useWhiteForeground ? "白色" : "黑色"}");
   return FlutterStatusbarcolor.setStatusBarWhiteForeground(useWhiteForeground);
