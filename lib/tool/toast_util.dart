@@ -7,7 +7,7 @@ import 'package:flutter_ns_test/extension/size_extension.dart';
 //toast弹窗相关
 class ToastUtil {
   ///显示通用提示文本
-  static void showText({
+  static void showToast({
     required String msg,
     Duration duration = const Duration(milliseconds: 2500),
   }) {

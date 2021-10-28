@@ -65,13 +65,11 @@ class _StartPageState extends State<StartPage> {
                   radius: 35.dw / 2,
                   callback: (CTBCallbackType type) {
                     if (type == CTBCallbackType.complete) {
-                      log("倒计时间到，自动跳转首页");
-                      RouterUtil.goBlocTestPage(context);
-                    } else if (type == CTBCallbackType.click) {
-                      log("被点击，执跳转首页");
-
+                      logDebug("倒计时间到，自动跳转首页");
                       RouterUtil.goHomePage(context);
-                      RouterUtil.goBlocTestPage(context);
+                    } else if (type == CTBCallbackType.click) {
+                      logDebug("被点击，执跳转首页");
+                      RouterUtil.goHomePage(context);
                     }
                   },
                 ),

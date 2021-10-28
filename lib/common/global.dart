@@ -45,14 +45,14 @@ class Global {
 
   //初始化全局信息，会在APP启动时执行
   static Future init() async {
-    log("======================flutter init begin======================");
+    logDebug("======================flutter init begin======================");
     await getDeviceInfo();
 
     await getPackageInfo();
 
     //监听网络状态
     HttpTool.instance.connectivityListenInit();
-    log("======================flutter init end======================");
+    logDebug("======================flutter init end======================");
 
     // print(await battery.batteryLevel);
     // battery.onBatteryStateChanged.listen((BatteryState state) {
@@ -72,11 +72,11 @@ class Global {
 
   //初始化界面数据
   static void uiInit(BuildContext context) async {
-    log("======================flutter uiInit begin======================");
+    logDebug("======================flutter uiInit begin======================");
 
-    log("是否为release版: $isRelease");
+    logDebug("是否为release版: $isRelease");
 
-    log("当前平台: $curPlatform");
+    logDebug("当前平台: $curPlatform");
 
     ScreenUtil.init(
         BoxConstraints(
@@ -89,33 +89,33 @@ class Global {
     screenHeight = ScreenUtil().screenHeight;
     statusBarHeight = ScreenUtil().statusBarHeight;
     bottomBarHeight = ScreenUtil().bottomBarHeight;
-    log("屏幕参数：\n "
+    logDebug("屏幕参数：\n "
         "设备像素密度；${ScreenUtil().pixelRatio} \n "
         "设备宽度；$screenWidth \n "
         "设备高度；$screenHeight \n "
         "状态栏高度；$statusBarHeight \n "
         "底部安全区距离；$bottomBarHeight");
-    log("[AppBar]工具栏组件的高度: kToolbarHeight = $kToolbarHeight");
-    log("底部导航栏的高度: kBottomNavigationBarHeight = $kBottomNavigationBarHeight");
+    logDebug("[AppBar]工具栏组件的高度: kToolbarHeight = $kToolbarHeight");
+    logDebug("底部导航栏的高度: kBottomNavigationBarHeight = $kBottomNavigationBarHeight");
 
     // 强制竖屏
     await SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
-    log("======================flutter uiInit end======================");
+    logDebug("======================flutter uiInit end======================");
   }
 
   ///获取APP包信息
   static Future<PackageInfo?> getPackageInfo() async {
     packageInfo = await PackageInfo.fromPlatform();
-    log("--------包信息：\n"
+    logDebug("--------包信息：\n"
         "APP名称: ${packageInfo?.appName ?? "unknown"}\n"
         "包名: ${packageInfo?.packageName ?? "unknown"}\n"
         "版本名: ${packageInfo?.version ?? "unknown"}\n"
         "版本号: ${packageInfo?.buildNumber ?? "unknown"}");
     String buildSignature = packageInfo?.buildSignature ?? "";
     if (buildSignature.isNotEmpty) {
-      log("Android 签名：$buildSignature");
+      logDebug("Android 签名：$buildSignature");
     }
     return packageInfo;
   }
@@ -132,17 +132,17 @@ class Global {
       if (Platform.isIOS) {
         iosDeviceInfo = await deviceInfo.iosInfo;
         deviceId = iosDeviceInfo?.identifierForVendor ?? "";
-        log("IOS设备: identifierForVendor = ${iosDeviceInfo?.toMap()}");
-        log("IOS设备：");
+        logDebug("IOS设备: identifierForVendor = ${iosDeviceInfo?.toMap()}");
+        logDebug("IOS设备：");
         logV(androidDeviceInfo?.toMap());
       } else if (Platform.isAndroid) {
         androidDeviceInfo = await deviceInfo.androidInfo;
         deviceId = androidDeviceInfo?.androidId ?? "";
         // log("Android设备: androidId = ${androidDeviceInfo?.toMap()}}");
-        log("Android设备信息：");
+        logDebug("Android设备信息：");
         logV(androidDeviceInfo?.toMap());
       } else {
-        log("设备信息：其他设备");
+        logDebug("设备信息：其他设备");
       }
     } catch (e) {
       print("获取设备信息报错：e:$e");

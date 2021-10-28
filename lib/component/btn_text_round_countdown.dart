@@ -45,7 +45,7 @@ class _KBtnTextRoundCountdownState extends State<KBtnTextRoundCountdown> {
         setState(() {
           curMicroseconds -= 1;
         });
-        log(curMicroseconds);
+        logDebug(curMicroseconds);
         if (curMicroseconds <= 0) {
           widget.callback(CTBCallbackType.complete);
           timer.cancel();

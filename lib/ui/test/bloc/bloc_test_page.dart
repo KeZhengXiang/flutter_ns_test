@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_ns_test/component/d_button.dart';
+import 'package:flutter_ns_test/component/button.dart';
 import 'package:flutter_ns_test/extension/size_extension.dart';
 
 //https://pub.dev/packages/flutter_bloc

@@ -15,7 +15,8 @@ import 'package:flutter_ns_test/router/routes.dart';
 ///跳转调用
 class RouterUtil {
   //过度动画类型
-  static const TransitionType _transitionType = TransitionType.inFromRight;
+  static const TransitionType _transitionType =
+      TransitionType.cupertino; //TransitionType.inFromRight;
 
   static Future<dynamic> goHomePage(BuildContext context) {
     return navigateTo(context, Routes.homePage,
@@ -40,6 +41,18 @@ class RouterUtil {
 
   static Future<dynamic> goFullScreenSensingPage(BuildContext context) {
     return navigateTo(context, Routes.fullScreenSensingPage, transition: _transitionType);
+  }
+
+  static Future<dynamic> goVideoPage(BuildContext context) {
+    return navigateTo(context, Routes.videoPage, transition: _transitionType);
+  }
+
+  static Future<dynamic> goVideoListPage(BuildContext context) {
+    return navigateTo(context, Routes.videoListPage, transition: _transitionType);
+  }
+
+  static Future<dynamic> goPermissionHandlerWidget(BuildContext context) {
+    return navigateTo(context, Routes.permissionHandlerWidget, transition: _transitionType);
   }
 
   ///自定义的参数跳转

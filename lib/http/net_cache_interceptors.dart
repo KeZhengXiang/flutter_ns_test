@@ -33,15 +33,15 @@ class NetCacheInterceptors extends Interceptor {
   @override
   onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     if (!HttpTool.instance.cacheConfig.enable) {
-      log("拦截器-CacheObject-onRequest: 已禁用缓存");
+      logDebug("拦截器-CacheObject-onRequest: 已禁用缓存");
       return handler.next(options);
     }
-    log("NetCacheInterceptors  9981 ${options.extra}");
+    logDebug("NetCacheInterceptors  9981 ${options.extra}");
     if (options.extra.containsKey(ExtraKey.cache)) {
       String key = options.uri.toString();
       //是否刷新
       if (options.extra.containsKey(ExtraKey.refresh)) {
-        log("拦截器-CacheObject-onRequest: refresh = true, list = false");
+        logDebug("拦截器-CacheObject-onRequest: refresh = true, list = false");
         //则只删除uri相同的缓存
         cache.remove(key);
       } else {
@@ -51,11 +51,11 @@ class NetCacheInterceptors extends Interceptor {
             //若缓存未过期，则返回缓存内容
             if ((DateTime.now().millisecondsSinceEpoch - ob.timeStamp) / 1000 <
                 HttpTool.instance.cacheConfig.maxAge) {
-              log("拦截器-CacheObject-onRequest: 缓存未过期，返回缓存数据");
+              logDebug("拦截器-CacheObject-onRequest: 缓存未过期，返回缓存数据");
               return handler.resolve(cache[key]!.response);
             } else {
               //若已过期则删除缓存，继续向服务器请求
-              log("拦截器-CacheObject-onRequest: 缓存过期，不拦截");
+              logDebug("拦截器-CacheObject-onRequest: 缓存过期，不拦截");
               cache.remove(key);
             }
           }
@@ -81,11 +81,11 @@ class NetCacheInterceptors extends Interceptor {
   _saveCache(Response object) {
     RequestOptions options = object.requestOptions;
     if (options.extra.containsKey(ExtraKey.cache) /* && options.method.toLowerCase() == "get"*/) {
-      log("拦截器-CacheObject-onResponse: 开始缓存");
+      logDebug("拦截器-CacheObject-onResponse: 开始缓存");
       // 如果缓存数量超过最大数量限制，则先移除最早的一条记录
       if (cache.length >= HttpTool.instance.cacheConfig.maxCount) {
         cache.remove(cache.keys.first);
-        log("拦截器-CacheObject-onResponse: 开始缓存，超量，移除首条缓存");
+        logDebug("拦截器-CacheObject-onResponse: 开始缓存，超量，移除首条缓存");
       }
       String key = options.uri.toString();
       cache[key] = CacheObject(object);

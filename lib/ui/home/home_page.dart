@@ -1,15 +1,15 @@
-import 'package:battery_plus/battery_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:flutter_ns_test/component/d_button.dart';
+import 'package:flutter_ns_test/component/button.dart';
+import 'package:flutter_ns_test/component/image_net.dart';
 import 'package:flutter_ns_test/component/my_will_pop_scope.dart';
-import 'package:flutter_ns_test/http/api.dart';
 import 'package:flutter_ns_test/http/http_tool.dart';
 import 'package:flutter_ns_test/router/router_util.dart';
 import 'package:flutter_ns_test/extension/size_extension.dart';
-import 'package:flutter_ns_test/tool/log_utils.dart';
+import 'package:flutter_ns_test/tool/path_util.dart';
+import 'package:flutter_ns_test/tool/permission_util.dart';
 import 'package:flutter_ns_test/tool/toast_util.dart';
-
+import 'package:permission_handler/permission_handler.dart';
 import 'widgets_binding_manager.dart';
 
 //首页
@@ -59,11 +59,10 @@ class _HomePageState extends State<HomePage> {
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: () async {
-            ToastUtil.showText(msg: "随便点点");
+            ToastUtil.showToast(msg: "随便点点");
 
             // logI(Dio().options.headers);
             // API.appVersion();
-
           },
         ),
       ),
@@ -71,11 +70,20 @@ class _HomePageState extends State<HomePage> {
   }
 
   List<Widget> get btnChildren {
+    final jg = const SizedBox(height: 20);
     return <Widget>[
+      // PlatformView
+      // Container(
+      //   color: Colors.cyan,
+      //   width: 300,
+      //   height: 200,
+      //   child: PlatformViewDemo(),
+      // ),
+
       //
       DButton(
         padding: EdgeInsets.symmetric(horizontal: 15.dw, vertical: 5.dw),
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).primaryColor,
         child: Text(
           "初识 flutter_bloc",
           style: TextStyle(fontSize: 16.dsp, fontWeight: FontWeight.w400, color: Colors.white),
@@ -85,10 +93,11 @@ class _HomePageState extends State<HomePage> {
         },
       ),
 
+      jg,
       //
       DButton(
         padding: EdgeInsets.symmetric(horizontal: 15.dw, vertical: 5.dw),
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).primaryColor,
         child: Text(
           "初识 provider",
           style: TextStyle(fontSize: 16.dsp, fontWeight: FontWeight.w400, color: Colors.white),
@@ -97,11 +106,11 @@ class _HomePageState extends State<HomePage> {
           RouterUtil.goProviderTestPage(context);
         },
       ),
-
+      jg,
       //
       DButton(
         padding: EdgeInsets.symmetric(horizontal: 15.dw, vertical: 5.dw),
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).primaryColor,
         child: Text(
           "私人计算器",
           style: TextStyle(fontSize: 16.dsp, fontWeight: FontWeight.w400, color: Colors.white),
@@ -110,11 +119,11 @@ class _HomePageState extends State<HomePage> {
           RouterUtil.goHouseToolPage(context);
         },
       ),
-
+      jg,
       //
       DButton(
         padding: EdgeInsets.symmetric(horizontal: 15.dw, vertical: 5.dw),
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).primaryColor,
         child: Text(
           "SensingBannerPage",
           style: TextStyle(fontSize: 16.dsp, fontWeight: FontWeight.w400, color: Colors.white),
@@ -123,17 +132,68 @@ class _HomePageState extends State<HomePage> {
           RouterUtil.goSensingBannerPage(context);
         },
       ),
-
+      jg,
       //
       DButton(
         padding: EdgeInsets.symmetric(horizontal: 15.dw, vertical: 5.dw),
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).primaryColor,
         child: Text(
           "FullScreenSensingPage",
           style: TextStyle(fontSize: 16.dsp, fontWeight: FontWeight.w400, color: Colors.white),
         ),
         onPressed: () {
           RouterUtil.goFullScreenSensingPage(context);
+        },
+      ),
+      jg,
+
+      DButton(
+        padding: EdgeInsets.symmetric(horizontal: 15.dw, vertical: 5.dw),
+        color: Theme.of(context).primaryColor,
+        child: Text(
+          "权限页面",
+          style: TextStyle(fontSize: 16.dsp, fontWeight: FontWeight.w400, color: Colors.white),
+        ),
+        onPressed: () {
+          RouterUtil.goPermissionHandlerWidget(context);
+        },
+      ),
+
+      DButton(
+        padding: EdgeInsets.symmetric(horizontal: 15.dw, vertical: 5.dw),
+        color: Theme.of(context).primaryColor,
+        child: Text(
+          "VideoPage",
+          style: TextStyle(fontSize: 16.dsp, fontWeight: FontWeight.w400, color: Colors.white),
+        ),
+        onPressed: () {
+          RouterUtil.goVideoPage(context);
+        },
+      ),
+      jg,
+      //
+      DButton(
+        padding: EdgeInsets.symmetric(horizontal: 15.dw, vertical: 5.dw),
+        color: Theme.of(context).primaryColor,
+        child: Text(
+          "VideoListPage",
+          style: TextStyle(fontSize: 16.dsp, fontWeight: FontWeight.w400, color: Colors.white),
+        ),
+        onPressed: () {
+          RouterUtil.goVideoListPage(context);
+        },
+      ),
+      jg,
+      //
+      DButton(
+        padding: EdgeInsets.symmetric(horizontal: 15.dw, vertical: 5.dw),
+        color: Theme.of(context).primaryColor,
+        child: Text(
+          "path test",
+          style: TextStyle(fontSize: 16.dsp, fontWeight: FontWeight.w400, color: Colors.white),
+        ),
+        onPressed: () {
+          PathUtil().test();
         },
       ),
     ];

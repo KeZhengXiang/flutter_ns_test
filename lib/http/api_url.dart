@@ -16,10 +16,10 @@ class ApiUrl {
   ///域名release线上版本锁定
   static String get baseUrl {
     if (Global.isRelease) {
-      log("当前运行版本： release");
+      logDebug("当前运行版本： release");
       return _onlineBaseUrl;
     } else {
-      log("当前运行版本： debug");
+      logDebug("当前运行版本： debug");
     }
     return _debugBaseUrl;
   }
