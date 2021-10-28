@@ -29,8 +29,8 @@ class _HouseToolPageState extends State<HouseToolPage> {
 
   //
   void perform() {
-    RouterUtil.goBlocTestPage(context);
-    return;
+    // RouterUtil.goBlocTestPage(context);
+    // return;
     count = 0;
     if (total > 0) {
       // 个税：3%（退税）
@@ -69,18 +69,18 @@ class _HouseToolPageState extends State<HouseToolPage> {
       setStatusBarConfig(useWhiteForeground: true);
     }
 
-    WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) {
-      print("addPostFrameCallback: timeStamp = $timeStamp");
-
-      WidgetsBinding.instance?.addPersistentFrameCallback((Duration timeStamp) {
-        count++;
-        print("addPersistentFrameCallback: timeStamp = $timeStamp  count = $count");
-
-        // //触发一帧的绘制
-        // WidgetsBinding.instance?.scheduleFrame();
-        // perform();
-      });
-    });
+    // WidgetsBinding.instance?.addPostFrameCallback((Duration timeStamp) {
+    //   print("addPostFrameCallback: timeStamp = $timeStamp");
+    //
+    //   WidgetsBinding.instance?.addPersistentFrameCallback((Duration timeStamp) {
+    //     count++;
+    //     print("addPersistentFrameCallback: timeStamp = $timeStamp  count = $count");
+    //
+    //     // //触发一帧的绘制
+    //     // WidgetsBinding.instance?.scheduleFrame();
+    //     // perform();
+    //   });
+    // });
 
     // WidgetsBinding.instance?.removeObserver(observer)
 

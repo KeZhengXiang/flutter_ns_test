@@ -16,6 +16,12 @@ class Routes {
   static String sensingBannerPage = "/HomePage/SensingBannerPage";
   static String fullScreenSensingPage = "/HomePage/FullScreenSensingPage";
 
+  static String videoPage = "/HomePage/VideoPage";
+  static String videoListPage = "/HomePage/VideoListPage";
+  static String shortVideoPage = "/HomePage/ShortVideoPage";
+
+  static String permissionHandlerWidget = "/HomePage/permissionHandlerWidget";
+
   static void configureRoutes(FluroRouter router) {
     Routes.router = router;
 
@@ -27,6 +33,11 @@ class Routes {
 
     router.define(sensingBannerPage, handler: sensingBannerHandler);
     router.define(fullScreenSensingPage, handler: fullScreenSensingHandler);
+    router.define(videoPage, handler: videoPageHandler);
+    router.define(videoListPage, handler: videoListPageHandler);
+    router.define(shortVideoPage, handler: shortVideoPageHandler);
+
+    router.define(permissionHandlerWidget, handler: permissionHandlerWidgetHandler);
 
     router.notFoundHandler = emptyHandler;
   }

@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_ns_test/model/version_entity.dart';
+import 'package:flutter_ns_test/model/version_model.dart';
 import 'http_tool.dart';
 
 class API {
   ///====================================================================
 
-  static Future<VersionEntity?> appVersion() async {
+  static Future<VersionModel?> appVersion() async {
     // final response = await dio.get('https://jsonplaceholder.typicode.com/photos');
     final response = await HttpTool.instance.request(
         isGet: false,
@@ -21,10 +21,10 @@ class API {
   }
 
   ///隔离解析
-  static VersionEntity isoLPFetchPhotos(Map<String, dynamic> json) {
+  static VersionModel isoLPFetchPhotos(Map<String, dynamic> json) {
     //解析
     DateTime dateTime = DateTime.now();
-    VersionEntity model = VersionEntity().fromJson(json);
+    VersionModel model = VersionModel().fromJson(json);
     print("解析时间（ms）：${DateTime.now().millisecondsSinceEpoch - dateTime.millisecondsSinceEpoch}");
     return model;
   }

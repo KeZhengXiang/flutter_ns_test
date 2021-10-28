@@ -30,7 +30,7 @@ class _MyWillPopScopeState extends State<MyWillPopScope> {
         // 点击返回键的操作
         if (lastPopTime == null || DateTime.now().difference(lastPopTime!) > Duration(seconds: 2)) {
           lastPopTime = DateTime.now();
-          ToastUtil.showText(msg: "再按一次退出");
+          ToastUtil.showToast(msg: "再按一次退出");
           return false;
         } else {
           lastPopTime = DateTime.now();

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ns_test/component/d_button.dart';
+import 'package:flutter_ns_test/component/button.dart';
 import 'package:flutter_ns_test/extension/size_extension.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +24,7 @@ class _ProviderTestPageState extends State<ProviderTestPage> {
       appBar: AppBar(title: const Text('ProviderTestPage')),
       body: Consumer<ProviderTestModel>(
         builder: (context, data, child) {
-          int num = data.num;
+          int num = data.num;//Add Configuration
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,

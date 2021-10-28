@@ -34,11 +34,15 @@ dependencies:
   flutter_screenutil: ^5.0.0+2
 
   #手机状态栏颜色 https://pub.dev/packages/flutter_statusbarcolor_ns/install
-  flutter_statusbarcolor_ns: ^0.3.0-nullsafety
+#  flutter_statusbarcolor_ns: ^0.3.0-nullsafety
 
 #  #路由控制
-#  auto_route: ^2.1.0
   fluro: ^2.0.3
+
+  #App更新
+
+  #日期格式化
+  date_format: ^2.0.4
 
   #-----------------------分割线--------------------------
   # 状态管理（官方推荐）  https://pub.dev/packages/provider
@@ -47,15 +51,24 @@ dependencies:
   #状态管理 https://pub.dev/packages/flutter_bloc
   flutter_bloc: ^7.2.0
 
+  #状态管理 https://pub.dev/packages/get
+  # https://gitee.com/frontend-qin/getx/
+  get: ^4.3.8
+
   #网络库 https://pub.dev/packages/dio
   dio: ^4.0.0
+
   #格式显示请求结果
   dio_http_formatter: ^2.0.0
+
   #网络状态监听【全平台】 https://pub.dev/packages/connectivity_plus
   connectivity_plus: ^1.1.0
 
   #事件
   event_bus: ^2.0.0
+
+  #权限
+  permission_handler: ^8.1.6
 
   #提示
   #https://github.com/MMMzq/bot_toast/blob/master/README_zh.md
@@ -67,10 +80,19 @@ dependencies:
   #用于访问加速度计、陀螺仪和磁强计传感器。
   sensors_plus: ^1.1.0
 
+  #
+  cached_network_image: ^3.1.0
+
   #-----------------------分割线--------------------------
 
   #分享
   share_plus: ^2.1.4
+
+
+#  video_player: ^2.2.5
+  better_player: ^0.0.77
+
+  path_provider: ^2.0.5
 
 
 dev_dependencies:

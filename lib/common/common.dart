@@ -8,7 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_ns_test/resources/text_config.dart';
 import 'package:flutter_ns_test/tool/log_utils.dart';
 import 'package:flutter_ns_test/tool/toast_util.dart';
-import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
 import 'dart:convert' as convert;
 import 'package:url_launcher/url_launcher.dart';
 
@@ -43,8 +42,9 @@ Future<void> setStatusBarColor() {
   if (!(Platform.isIOS || Platform.isAndroid)) {
     return Future.value(0);
   }
-  log("设置状态栏透明");
-  return FlutterStatusbarcolor.setStatusBarColor(Colors.transparent);
+  logDebug("设置状态栏透明");
+  return Future.value(null);
+  // return FlutterStatusbarcolor.setStatusBarColor(Colors.transparent);
 }
 
 ///设置状态栏前景亮度
@@ -58,8 +58,9 @@ Future<void> setStatusBarConfig({required bool useWhiteForeground}) async {
   }
 
   _useWhite = useWhiteForeground;
-  log("设置状态栏前景亮度： ${useWhiteForeground ? "白色" : "黑色"}");
-  return FlutterStatusbarcolor.setStatusBarWhiteForeground(useWhiteForeground);
+  logDebug("设置状态栏前景亮度： ${useWhiteForeground ? "白色" : "黑色"}");
+  return Future.value(null);
+  // return FlutterStatusbarcolor.setStatusBarWhiteForeground(useWhiteForeground);
 }
 
 class CommonUtil {
@@ -88,7 +89,7 @@ class CommonUtil {
       // 判断当前手机是否安装某app. 能否正常跳转
       await launch(url);
     } else {
-      log('Could not launch $url');
+      logDebug('Could not launch $url');
     }
   }
 
@@ -111,7 +112,7 @@ class CommonUtil {
     if (isChinaPhoneLegal(str)) {
       return true;
     } else {
-      ToastUtil.showText(msg: TextConfig.common0);
+      ToastUtil.showToast(msg: TextConfig.common0);
     }
     return false;
   }

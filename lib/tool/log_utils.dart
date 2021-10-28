@@ -5,7 +5,7 @@ import 'package:logger/logger.dart';
 
 var logger = Logger();
 
-void log(Object object) {
+void logDebug(Object object) {
   if (!Global.isRelease) {
     print(object);
   }

@@ -48,7 +48,7 @@ class HttpTool {
 
   ///取消所有请求
   void cancelNet() {
-    log("取消所有请求");
+    logDebug("取消所有请求");
     cancelToken.cancel("cancelled");
   }
 
@@ -166,7 +166,7 @@ class HttpTool {
 
     try {
       if (isLog) {
-        log("【DIO】headers = ${dio.options.headers} \n"
+        logDebug("【DIO】headers = ${dio.options.headers} \n"
             "【DIO】isGet   = $isGet, url = $intactUrl, \n"
             "【DIO】param   = $param");
       }
@@ -207,7 +207,7 @@ class HttpTool {
             if (jsonMap.containsKey("message")) {
               final String msg = jsonMap["message"] ?? "";
               if (msg.isNotEmpty) {
-                ToastUtil.showText(msg: msg);
+                ToastUtil.showToast(msg: msg);
               }
             }
             responseCode(code);
@@ -223,37 +223,37 @@ class HttpTool {
 
   ///上传数据
   void onSendProgress(int count, int total) {
-    log("onSendProgress: total = $total, count = $count");
+    logDebug("onSendProgress: total = $total, count = $count");
   }
 
   ///下载数据
   void progressCallback(int count, int total) {
-    log("progressCallback: total = $total, count = $count");
+    logDebug("progressCallback: total = $total, count = $count");
   }
 
   ///响应码处理
   void responseCode(int code) {}
 
   void dioError(DioError e) {
-    log("-------------网络请求错误：DioError: begin:--------------------");
+    logDebug("-------------网络请求错误：DioError: begin:--------------------");
     if (e.type == DioErrorType.cancel) {
-      log("类型：请求被取消");
+      logDebug("类型：请求被取消");
     } else if (e.type == DioErrorType.response) {
-      ToastUtil.showText(msg: "服务器未响应，请稍后...");
+      ToastUtil.showToast(msg: "服务器未响应，请稍后...");
     } else if (e.type == DioErrorType.connectTimeout) {
-      log("类型：超时打开时");
+      logDebug("类型：超时打开时");
       // ToastUtil.showToast(msg: "请求超时");
     } else if (e.type == DioErrorType.sendTimeout) {
-      log("类型：请求超时");
+      logDebug("类型：请求超时");
       // ToastUtil.showToast(msg: "请求超时");
     } else if (e.type == DioErrorType.receiveTimeout) {
-      log("类型：接收超时");
+      logDebug("类型：接收超时");
     } else if (e.type == DioErrorType.other) {
-      log("类型：其他 other");
+      logDebug("类型：其他 other");
     }
-    log("http错误 path：${e.response?.requestOptions.path}");
-    log("http错误 queryParameters：${e.response?.requestOptions.queryParameters}");
-    log("-------------网络请求错误：DioError: end:--------------------");
+    logDebug("http错误 path：${e.response?.requestOptions.path}");
+    logDebug("http错误 queryParameters：${e.response?.requestOptions.queryParameters}");
+    logDebug("-------------网络请求错误：DioError: end:--------------------");
   }
 
   ///配置url后缀
@@ -287,7 +287,7 @@ class HttpTool {
     } else if (_connectivityResult == ConnectivityResult.ethernet) {
       // 连接到以太网网络
     } else {
-      ToastUtil.showText(msg: "网络已断开,请检查网络");
+      ToastUtil.showToast(msg: "网络已断开,请检查网络");
       ToastUtil.closeAllLoading();
       return false;
     }
@@ -315,7 +315,7 @@ class HttpTool {
       } else if (result == ConnectivityResult.ethernet) {
         // 连接到以太网网络
       } else {
-        ToastUtil.showText(msg: "网络已断开,请检查网络");
+        ToastUtil.showToast(msg: "网络已断开,请检查网络");
         ToastUtil.closeAllLoading();
       }
     });

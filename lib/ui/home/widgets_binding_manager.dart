@@ -19,7 +19,7 @@ class WidgetsBindingManager with WidgetsBindingObserver {
   ///******************************************************
   //
   void logBd(Object obj) {
-    log("【APP状态监听】:$obj");
+    logDebug("【APP状态监听】:$obj");
   }
 
   // 当前系统改变了一些访问性活动的回调
