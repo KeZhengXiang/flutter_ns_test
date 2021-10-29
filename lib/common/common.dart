@@ -79,6 +79,11 @@ class CommonUtil {
     return convert.jsonEncode(map);
   }
 
+  ///json解码
+  static Map<String, dynamic> jsonDecode(String source) {
+    return convert.jsonDecode(source);
+  }
+
   ///加载本地json
   static Future<String> loadLocalJson({required String path}) async {
     return rootBundle.loadString(path);

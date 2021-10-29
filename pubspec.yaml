@@ -89,7 +89,7 @@ dependencies:
   share_plus: ^2.1.4
 
 
-#  video_player: ^2.2.5
+  video_player: ^2.2.5
   better_player: ^0.0.77
 
   path_provider: ^2.0.5
@@ -120,6 +120,7 @@ flutter:
    - assets/images/global/
    - assets/images/3d/banner/
    - assets/images/3d/full_screen/
+   - assets/jsons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

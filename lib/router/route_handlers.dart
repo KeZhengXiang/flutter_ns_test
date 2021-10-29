@@ -13,9 +13,9 @@ import 'package:flutter_ns_test/ui/test/get/x_home.dart';
 import 'package:flutter_ns_test/ui/test/house_tool_page.dart';
 import 'package:flutter_ns_test/ui/test/provider/provider_test_model.dart';
 import 'package:flutter_ns_test/ui/test/provider/provider_test_page.dart';
-import 'package:flutter_ns_test/ui/video/short_video_page.dart';
+import 'package:flutter_ns_test/ui/video/short_video/short_video_page.dart';
 import 'package:flutter_ns_test/ui/video/video_list_page.dart';
-import 'package:flutter_ns_test/ui/video/video_page.dart';
+import 'package:flutter_ns_test/ui/video/long_video/video_page.dart';
 import 'package:provider/provider.dart';
 
 //空页面

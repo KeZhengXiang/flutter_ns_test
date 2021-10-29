@@ -17,7 +17,9 @@
 import 'package:better_player/better_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ns_test/common/global.dart';
-import 'package:flutter_ns_test/ui/video/video_helper.dart';
+import 'package:flutter_ns_test/ui/video/long_video/video_helper.dart';
+
+import 'video_resources.dart';
 
 ///自动播放列表
 class VideoListPage extends StatefulWidget {
@@ -32,8 +34,8 @@ class _VideoListPageState extends State<VideoListPage> {
 
   List<BetterPlayerDataSource> createDataSet() {
     List<BetterPlayerDataSource> dataSourceList = [];
-    VideoHelper.urlList.forEach((element) {
-      dataSourceList.add(VideoHelper.createBetterPlayerDataSource(url: element));
+    VideoResources.urlList.forEach((element) {
+      dataSourceList.add(VideoHelper.createDataSource(url: element));
     });
     return dataSourceList;
   }
@@ -56,7 +58,7 @@ class _VideoListPageState extends State<VideoListPage> {
         width: Global.screenWidth,
         height: Global.screenHeight,
         child: BetterPlayerPlaylist(
-            betterPlayerConfiguration: VideoHelper.createBetterPlayerConfiguration(),
+            betterPlayerConfiguration: VideoHelper.createConfiguration(),
             betterPlayerPlaylistConfiguration: const BetterPlayerPlaylistConfiguration(
               nextVideoDelay: const Duration(milliseconds: 3000),
               loopVideos: true,

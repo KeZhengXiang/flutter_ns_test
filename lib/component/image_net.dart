@@ -54,7 +54,7 @@ class DImageNet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final img = CachedNetworkImage(
+    return CachedNetworkImage(
       fadeOutDuration: const Duration(milliseconds: 200),
       fadeInDuration: fadeInDuration,
       width: width,
@@ -68,6 +68,15 @@ class DImageNet extends StatelessWidget {
       imageUrl: imageUrl + joinUrl,
       colorBlendMode: colorBlendMode,
       fit: fit,
+      imageBuilder: (context, imageProvider) => Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(radius),
+          image: DecorationImage(
+            image: imageProvider,
+            fit: fit,
+          ),
+        ),
+      ),
       placeholder: placeholder ??
           (context, url) {
             return Container(
@@ -86,13 +95,5 @@ class DImageNet extends StatelessWidget {
             );
           },
     );
-    if (radius == 0) {
-      return img;
-    } else {
-      return ClipRRect(
-        borderRadius: BorderRadius.circular(radius),
-        child: img,
-      );
-    }
   }
 }

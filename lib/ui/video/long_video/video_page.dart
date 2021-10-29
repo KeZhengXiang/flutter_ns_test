@@ -4,6 +4,7 @@ import 'package:flutter_ns_test/common/global.dart';
 import 'package:flutter_ns_test/component/button.dart';
 import 'package:flutter_ns_test/tool/log_utils.dart';
 import 'package:flutter_ns_test/extension/size_extension.dart';
+import 'package:flutter_ns_test/ui/video/video_resources.dart';
 import 'video_helper.dart';
 
 ///帮助文档 ： https://jhomlala.github.io/betterplayer/#/cacheconfiguration
@@ -22,14 +23,15 @@ class _VideoPageState extends State<VideoPage> {
 
   void _listen(BetterPlayerEvent event) {
     logDebug(event.betterPlayerEventType);
+    print(event.parameters);
+    //BetterPlayerEventType.play
   }
 
   @override
   void initState() {
-    VideoHelper.curIndex = 0;
-    _configuration = VideoHelper.createBetterPlayerConfiguration();
-    source =
-        VideoHelper.createBetterPlayerDataSource(url: VideoHelper.urlList[VideoHelper.curIndex]);
+    VideoResources.curIndex = 0;
+    _configuration = VideoHelper.createConfiguration();
+    source = VideoHelper.createDataSource(url: VideoResources.curUrl);
     _controller = BetterPlayerController(_configuration, betterPlayerDataSource: source);
 
     _controller.addEventsListener(_listen);
@@ -73,14 +75,11 @@ class _VideoPageState extends State<VideoPage> {
                 ),
                 onPressed: () {
                   _controller.pause();
-                  if (VideoHelper.curIndex >= VideoHelper.urlList.length - 1) {
-                    VideoHelper.curIndex = 0;
-                  } else {
-                    VideoHelper.curIndex++;
-                  }
-                  print("切换源至： ${VideoHelper.curIndex}");
-                  _controller.setupDataSource(VideoHelper.createBetterPlayerDataSource(
-                      url: VideoHelper.urlList[VideoHelper.curIndex]));
+                  VideoResources.addIndex();
+
+                  print("切换源至： ${VideoResources.curIndex}");
+                  _controller.setupDataSource(
+                      VideoHelper.createDataSource(url: VideoResources.curUrl));
                 },
               ),
             ),
@@ -176,3 +175,4 @@ class _VideoPageState extends State<VideoPage> {
 //     super.dispose();
 //   }
 // }
+//
