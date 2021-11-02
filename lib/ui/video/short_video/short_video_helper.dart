@@ -7,7 +7,7 @@ import 'package:flutter_ns_test/model/short_video_entity.dart';
 import 'package:flutter_ns_test/tool/log_utils.dart';
 
 //File:short_video_helper
-//唯一ctr
+//唯一ctr 
 class ShortVideoHelper {
   static final ShortVideoHelper _instance = ShortVideoHelper._internal();
 
