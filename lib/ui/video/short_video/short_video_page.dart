@@ -6,6 +6,7 @@ import 'package:flutter_ns_test/tool/log_utils.dart';
 import 'package:flutter_ns_test/ui/video/video_resources.dart';
 
 import 'short_video_cell.dart';
+import 'short_video_helper.dart';
 
 /// 短视频列表页面
 class ShortVideoPage extends StatefulWidget {
@@ -31,6 +32,8 @@ class _ShortVideoPageState extends State<ShortVideoPage> {
   Future<void> initData() async {
     final jsonStr = await CommonUtil.loadLocalJson(path: "assets/jsons/short_video_json.json");
     model = ShortVideoModel().fromJson(CommonUtil.jsonDecode(jsonStr));
+    ShortVideoHelper().model = model;
+    ShortVideoHelper().changeIdx(0, model!.videoList, isInit: true);
     isInit = true;
     refreshUI();
   }
@@ -50,6 +53,7 @@ class _ShortVideoPageState extends State<ShortVideoPage> {
   @override
   void dispose() {
     // _betterPlayerController.dispose();
+    ShortVideoHelper().clear();
     super.dispose();
   }
 
@@ -98,9 +102,12 @@ class _ShortVideoPageState extends State<ShortVideoPage> {
               physics: BouncingScrollPhysics(),
               controller: _controller,
               scrollDirection: Axis.vertical,
-              itemCount: model!.length,
+              itemCount: model?.length ?? 0,
               itemBuilder: (context, index) {
-                return ShortVideoCell(index: index, model: model!.videoList[index]);
+                return ShortVideoCell(index: index, model: model!.videoList[index],onInitIdx:
+                (index){
+                  ShortVideoHelper().changeIdx(index, model!.videoList);
+                },);
               },
               onPageChanged: (int index) {
                 logDebug("go  page:$index");

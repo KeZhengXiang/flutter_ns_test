@@ -14,7 +14,11 @@ class ShortVideoCell extends StatefulWidget {
   final int index;
   final ShortVideoInfo model;
 
-  const ShortVideoCell({Key? key, required this.index, required this.model}) : super(key: key);
+  final Function(int idx) onInitIdx;
+
+  const ShortVideoCell(
+      {Key? key, required this.index, required this.model, required this.onInitIdx})
+      : super(key: key);
 
   @override
   _ShortVideoCellState createState() => _ShortVideoCellState();
@@ -24,6 +28,7 @@ class _ShortVideoCellState extends State<ShortVideoCell> {
   @override
   void initState() {
     logDebug("initState  ${widget.index}");
+    widget.onInitIdx(widget.index);
     super.initState();
   }
 

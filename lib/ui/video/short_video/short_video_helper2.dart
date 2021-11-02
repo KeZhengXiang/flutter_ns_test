@@ -6,16 +6,16 @@ import 'package:flutter_ns_test/component/image_net.dart';
 import 'package:flutter_ns_test/model/short_video_entity.dart';
 import 'package:flutter_ns_test/tool/log_utils.dart';
 
-//File:short_video_helper
-//唯一ctr
-class ShortVideoHelper {
-  static final ShortVideoHelper _instance = ShortVideoHelper._internal();
+//File:short_video_helper2
+//独立ctr
+class ShortVideoHelper2 {
+  static final ShortVideoHelper2 _instance = ShortVideoHelper2._internal();
 
-  factory ShortVideoHelper() {
+  factory ShortVideoHelper2() {
     return _instance;
   }
 
-  ShortVideoHelper._internal() {
+  ShortVideoHelper2._internal() {
     init();
   }
 
@@ -81,8 +81,8 @@ class ShortVideoHelper {
         } else {
           late BetterPlayerDataSource _source;
           late BetterPlayerController _controller;
-          final _configuration = ShortVideoHelper.createConfiguration(list[i]);
-          _source = ShortVideoHelper.createDataSource(list[i]);
+          final _configuration = ShortVideoHelper2.createConfiguration(list[i]);
+          _source = ShortVideoHelper2.createDataSource(list[i]);
           _controller = BetterPlayerController(_configuration, betterPlayerDataSource: _source);
           _videoSourceHashMap[key] = _source;
           _videoCtrHashMap[key] = _controller;
@@ -124,8 +124,8 @@ class ShortVideoHelper {
       return _videoCtrHashMap[key]!;
     } else {
       logV("---9981231--- index = $index,  创建ctr");
-      final _configuration = ShortVideoHelper.createConfiguration(model);
-      final _source = ShortVideoHelper.createDataSource(model);
+      final _configuration = ShortVideoHelper2.createConfiguration(model);
+      final _source = ShortVideoHelper2.createDataSource(model);
       return BetterPlayerController(_configuration, betterPlayerDataSource: _source);
     }
   }
