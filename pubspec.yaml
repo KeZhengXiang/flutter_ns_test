@@ -117,6 +117,7 @@ flutter:
   assets:
    - assets/
    - assets/images/
+   - assets/images/webp/
    - assets/images/global/
    - assets/images/3d/banner/
    - assets/images/3d/full_screen/

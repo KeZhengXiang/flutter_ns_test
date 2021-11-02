@@ -9,6 +9,7 @@ import 'package:flutter_ns_test/extension/size_extension.dart';
 import 'package:flutter_ns_test/tool/path_util.dart';
 import 'package:flutter_ns_test/tool/permission_util.dart';
 import 'package:flutter_ns_test/tool/toast_util.dart';
+import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'widgets_binding_manager.dart';
 
@@ -202,6 +203,11 @@ class _HomePageState extends State<HomePage> {
           RouterUtil.goShortVideoPage(context);
         },
       ),
+
+
+      Image.asset("assets/images/webp/open.webp",
+          width: 100, height: 100, fit: BoxFit.cover),
+
     ];
   }
 }
