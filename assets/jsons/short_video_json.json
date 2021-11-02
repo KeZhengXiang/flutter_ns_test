@@ -270,36 +270,6 @@
         "type": 0,
         "url": "",
         "show_time": 0
-      },
-      {
-        "video_id": 49,
-        "name": "虎爪",
-        "release_time": "2021-04-07",
-        "desc": "这是一段短视频简介,如果感觉不够长，我可以把它变得更长,这是一段短视频简介,如果感觉不够长，我可以把它变得更长",
-        "plays": "8.5万",
-        "likes": "8.8万",
-        "dislikes": "0",
-        "media_url": "https://ks3-cn-beijing.ksyun.com/videotest/20210406194055.MP4?auth_key=1635480214-ea5d2f1c4608232e07d3aa3d998e5135-0-868189616e06774380e141552d611224",
-        "is_complete": 1,
-        "history_progress": 0,
-        "history_index": 1,
-        "is_collect": 0,
-        "is_like": 2,
-        "image": "",
-        "img": "",
-        "collection": "1.2万",
-        "share": "0",
-        "author": {
-          "author_id": 0,
-          "username": "哈利波特大",
-          "nick_name": "哈利波特大",
-          "avatar": "https://testc.hzsy66.cn/static/img/avatarman.png",
-          "channel": 0
-        },
-        "class": 0,
-        "type": 0,
-        "url": "",
-        "show_time": 0
       }
     ],
     "sk": 10,
